@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std;
+
+
+class Property
+{
+	public:
+		virtual ~Property() {}
+		virtual double worth() = 0;
+};
+class Appartment : public Property
+{
+	public:
+	int cost;
+	Appartment(int cost) : cost(cost){}
+
+double worth()
+{
+	return cost/1000;
+}
+
+};
+
+class Car : public Property
+{
+	public:
+	int cost;
+	Car(int cost) : cost(cost){}
+
+double worth()
+{
+	return cost/200;
+}
+
+};
+
+
+
+class CountryHouse : public Property
+{
+	public:
+	int cost;
+	CountryHouse(int cost) : cost(cost){}
+
+double worth()
+{
+	return cost/500;
+}
+
+};
+
+main()
+{
+	Property *Cost[7];
+	Cost[0] = new Appartment(6000000);
+	Cost[1] = new Appartment(3500000);
+	Cost[2] = new Appartment(10000000);
+	Cost[3] = new Car(560000);
+	Cost[4] = new Car(1400000);
+	Cost[5] = new CountryHouse(8800000);
+	Cost[6] = new CountryHouse(12000000);
+	for (int i = 0; i < 7; i++)
+	{
+		cout << "Tax for the property number " << i+1 << " = "  << (*Cost[i]).worth() << endl;
+		delete Cost[i];
+	}
+	return 0;
+}
